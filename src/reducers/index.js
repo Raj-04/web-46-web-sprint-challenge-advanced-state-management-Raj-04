@@ -10,7 +10,8 @@ const reducer = (state=initialState, action)=>{
         case(FETCH_START):
             return({
                 ...state,
-                isLoading: true
+                isLoading: true,
+                error: '',
             })
         
         case(FETCH_SUCCESS):
@@ -34,13 +35,16 @@ const reducer = (state=initialState, action)=>{
                 smurfs: [
                     ...state.smurfs,
                     action.payload
-                ]
+                ],
+                error: '',
             })
 
         case(ERROR):
             return({
                 ...state,
-                error:action.payload
+                error:action.payload,
+                smurfs: [],
+                isLoading: false,
             })
 
         default:
